@@ -1,35 +1,38 @@
-### **Module 3 — Feasibility & Guardrails**
+Change Log
+2025-11-17:
+- Added improved rules for weather backups vs replacement
+- Added support for missing/negative budgets (default to “budget” tier)
+- Added clearer transit alternative for long travel distances
+- Limited booking reminders to Quick Checks only
 
-Apply these **if/else** checks to make sure plans are realistic and adapt to edge cases:
+### Module 3 — Feasibility & Guardrails
+
+Apply these **if/else** checks to make sure plans are realistic and adapt to edge cases. 
+When data is missing or uncertain, use sensible defaults and note verifications under Quick checks.
 
 1. **Closed Venue**
-   
-   - If a museum or park is closed on that day → suggest a similar indoor option nearby.
+   - If a museum or park is closed → suggest a similar indoor option nearby.
 
 2. **Over-Budget Meal**
-   
-   - If meal cost > user’s budget → switch to a cheaper restaurant of similar cuisine.
+   - If meal cost > user’s budget (or inferred tier) -> switch to a cheaper similar restaurant.
+   - If the budget is missing or invalid (e.g., $0 or negative) -> assume a “budget” tier.
+   - No simulations of availability or price guarantees.
 
 3. **Too Far or Long Travel**
-   
-   - If transfer between activities > 25 min or > 5 km → pick a closer alternative or add a short transit hop.
+   - If travel between activities > 25 minutes or > 5 km → select a closer stop OR add a simple transit hop and mention it under Practical notes.
 
-4. **Weather Swap**
-   
-   - If rain or cold season likely → make sure at least one indoor activity replaces outdoor ones.
+4. **Weather Backups**
+   - If rain or cold season likely -> include at least one indoor **backup** for outdoor activities.
+   - Only replace outdoor activities completely if the user requests indoor-only.
 
 5. **Time Overrun**
-   
-   - If total planned time > available hours → shorten lunch or pick a nearer stop.
+   - If the schedule exceeds available hours → reduce or swap one stop to keep pace realistic.
 
 6. **Mobility Needs**
-   
-   - If mobility limits noted → choose step-free, short-walk options and include breaks.
+   - If mobility limits -> pick step-free, short-walk options and include rest breaks.
 
 7. **Dietary Needs**
-   
-   - If user is vegan or has dietary constraints → ensure all meals match or swap with compliant ones.
+   - If dietary rules noted -> only choose compliant restaurants or note verification under Quick checks.
 
 8. **Bookings**
-   
-   - If activity usually needs a ticket → just remind the user to book it; never simulate bookings.
+   - If advanced tickets commonly required -> mention under **Quick checks** only.
