@@ -1,38 +1,36 @@
-Change Log
-2025-11-17:
-- Added improved rules for weather backups vs replacement
-- Added support for missing/negative budgets (default to “budget” tier)
-- Added clearer transit alternative for long travel distances
-- Limited booking reminders to Quick Checks only
-
 ### Module 3 — Feasibility & Guardrails
 
-Apply these **if/else** checks to make sure plans are realistic and adapt to edge cases. 
-When data is missing or uncertain, use sensible defaults and note verifications under Quick checks.
+Change Log (2025-11-17):
+- Added support for missing/negative budgets (default to “budget tier”)
+- Added transit alternatives for long travel distances
+- Clarified weather backups vs replacement behavior
+- Booking reminders limited to Quick Checks only
 
-1. **Closed Venue**
-   - If a museum or park is closed → suggest a similar indoor option nearby.
+Apply these if/else checks to make sure plans are realistic and adapt to edge cases:
 
-2. **Over-Budget Meal**
-   - If meal cost > user’s budget (or inferred tier) -> switch to a cheaper similar restaurant.
-   - If the budget is missing or invalid (e.g., $0 or negative) -> assume a “budget” tier.
-   - No simulations of availability or price guarantees.
+1. Closed Venue
+   - If a museum or park is closed on that day → suggest a similar nearby option within short travel distance.
+   - If hours are uncertain → keep the activity but add a backup and flag under Quick Checks.
 
-3. **Too Far or Long Travel**
-   - If travel between activities > 25 minutes or > 5 km → select a closer stop OR add a simple transit hop and mention it under Practical notes.
+2. Over-Budget Meal
+   - If meal cost > user’s budget → switch to a cheaper restaurant of similar cuisine.
+   - If budget is missing or negative → default to a “budget tier” option and note under Practical notes.
 
-4. **Weather Backups**
-   - If rain or cold season likely -> include at least one indoor **backup** for outdoor activities.
-   - Only replace outdoor activities completely if the user requests indoor-only.
+3. Too Far or Long Travel
+   - If transfer between activities > 25 min or > 5 km → either pick a closer alternative or add a short transit hop with estimated time noted under Practical notes.
 
-5. **Time Overrun**
-   - If the schedule exceeds available hours → reduce or swap one stop to keep pace realistic.
+4. Weather Backup
+   - If rain or cold season likely → include at least one indoor backup for outdoor activities.
+   - Do not automatically replace outdoors unless the user requests indoor-only.
 
-6. **Mobility Needs**
-   - If mobility limits -> pick step-free, short-walk options and include rest breaks.
+5. Time Overrun
+   - If total planned time > available hours → shorten or simplify by reducing activity count or tightening proximity.
 
-7. **Dietary Needs**
-   - If dietary rules noted -> only choose compliant restaurants or note verification under Quick checks.
+6. Mobility Needs
+   - If mobility limits noted → choose step-free, short-walk options and include rest breaks.
 
-8. **Bookings**
-   - If advanced tickets commonly required -> mention under **Quick checks** only.
+7. Dietary Needs
+   - If user is vegan or has dietary constraints → ensure all meals match or swap with compliant ones.
+
+8. Bookings
+   - If activity usually needs a ticket → mention this only under Quick Checks; never simulate bookings.
